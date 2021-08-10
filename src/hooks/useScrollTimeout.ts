@@ -25,6 +25,7 @@ export function useScrollTimout(delay: number) {
     if (isScrolling) {
       const timeout = window.setTimeout(() => {
         setIsSmall(true)
+        console.log('BAM BAM BAM')
       }, delay)
       return () => window.clearTimeout(timeout)
     }

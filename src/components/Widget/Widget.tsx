@@ -11,6 +11,7 @@ import { Communicator } from '../../types/interfaces'
 
 const DELAY = 3000
 
+// here I would consider opening some messaging apps :)
 const calculateUrl = (
   type: Communicators,
   value: string,
@@ -20,15 +21,19 @@ const calculateUrl = (
     case Communicators.SMS:
       return isMobile ? `sms:/${value}` : `sms:/${value}`
     case Communicators.FB:
-      return `https://facebook.com/${value}`
+      return `http://m.me/${value}`
     case Communicators.IN:
       return `https://instagram.com/${value}`
     default:
       return value
   }
 }
+
+type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}
 interface WidgetProps {
-  accounts: Record<Communicators, string>
+  accounts: PartialRecord<Communicators, string>
 }
 
 export function Widget({ accounts }: WidgetProps) {
@@ -43,7 +48,10 @@ export function Widget({ accounts }: WidgetProps) {
           return accounts[type]
             ? [
                 ...result,
-                { type, value: calculateUrl(type, accounts[type], isMobile) }
+                {
+                  type,
+                  value: calculateUrl(type, accounts[type] || '', isMobile)
+                }
               ]
             : result
         },
