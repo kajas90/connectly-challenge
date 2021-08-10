@@ -3,7 +3,13 @@ import { Widget } from './components/Widget'
 function App() {
   return (
     <div>
-      <Widget />
+      <Widget
+        accounts={{
+          sms: '+48123123123',
+          messenger: 'kasia',
+          instagram: 'kasia'
+        }}
+      />
     </div>
   )
 }

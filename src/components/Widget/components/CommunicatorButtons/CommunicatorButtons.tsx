@@ -1,13 +1,21 @@
 import styled, { keyframes } from 'styled-components'
-import { Communicators } from '../../../../enums/communicators'
+import { Communicator } from '../../../../types/interfaces'
 import { CommunicatorIcon } from '../../../icons/CommunicatorIcon'
 import { Button } from '../../../Button'
 
-export function CommunicatorButtons() {
+interface CommunicatorButtonsProps {
+  items: Communicator[]
+}
+
+export function CommunicatorButtons({ items }: CommunicatorButtonsProps) {
   return (
     <Wrapper>
-      {Object.values(Communicators).map((type, index) => (
-        <AnimatedButton delay={index} key={type}>
+      {items.map(({ type, value }, index) => (
+        <AnimatedButton
+          onClick={() => window.open(value, '_blank')}
+          delay={index}
+          key={type}
+        >
           <StyledIcon type={type} />
           {type}
         </AnimatedButton>

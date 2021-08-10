@@ -1,11 +1,15 @@
 import styled from 'styled-components'
-import { Communicators } from '../../../../enums/communicators'
+import { Communicator } from '../../../../types/interfaces'
 import { CommunicatorIcon } from '../../../icons/CommunicatorIcon'
 
-export function FullsizeMessage() {
+interface FullsizeMessageProps {
+  items: Communicator[]
+}
+
+export function FullsizeMessage({ items }: FullsizeMessageProps) {
   return (
     <Wrapper>
-      {Object.values(Communicators).map((type) => (
+      {items.map(({ type }) => (
         <MarginIcon key={type} type={type} />
       ))}
       Message us

@@ -1,25 +1,68 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useScrollTimout } from '../../hooks/useScrollTimeout'
-
+import { useIsMobileDevice } from '../../hooks/useIsMobileDevice'
 import { FullsizeMessage } from './components/FullsizeMessage'
 import { MessageIcon, CloseIcon } from '../icons'
 import { CommunicatorButtons } from './components/CommunicatorButtons'
 import { Button } from '../Button'
+import { Communicators } from '../../enums/communicators'
+import { Communicator } from '../../types/interfaces'
 
 const DELAY = 3000
 
-export function Widget() {
+const calculateUrl = (
+  type: Communicators,
+  value: string,
+  isMobile: boolean
+): string => {
+  switch (type) {
+    case Communicators.SMS:
+      return isMobile ? `sms:/${value}` : `sms:/${value}`
+    case Communicators.FB:
+      return `https://facebook.com/${value}`
+    case Communicators.IN:
+      return `https://instagram.com/${value}`
+    default:
+      return value
+  }
+}
+interface WidgetProps {
+  accounts: Record<Communicators, string>
+}
+
+export function Widget({ accounts }: WidgetProps) {
   const isSmall = useScrollTimout(DELAY)
+  const isMobile = useIsMobileDevice()
   const [showButtons, setShowButtons] = useState(false)
+
+  const communicators = useMemo(
+    () =>
+      Object.values(Communicators).reduce(
+        (result: Communicator[], type: Communicators) => {
+          return accounts[type]
+            ? [
+                ...result,
+                { type, value: calculateUrl(type, accounts[type], isMobile) }
+              ]
+            : result
+        },
+        []
+      ),
+    [accounts, isMobile]
+  )
 
   return (
     <Wrapper>
-      {showButtons && <CommunicatorButtons />}
+      {showButtons && <CommunicatorButtons items={communicators} />}
       <ToRight>
         {!showButtons && (
           <Button onClick={() => setShowButtons(true)}>
-            {isSmall ? <MessageIcon /> : <FullsizeMessage />}
+            {isSmall ? (
+              <MessageIcon />
+            ) : (
+              <FullsizeMessage items={communicators} />
+            )}
           </Button>
         )}
         {showButtons && (
