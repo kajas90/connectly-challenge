@@ -1,17 +1,33 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import { useScrollTimout } from '../../hooks/useScrollTimeout'
 
 import { FullsizeMessage } from '../FullsizeMessage'
-import { MessageIcon } from '../icons'
+import { MessageIcon, CloseIcon } from '../icons'
+import { CommunicatorButtons } from '../CommunicatorButtons'
+import { Button } from '../Button'
 
 const DELAY = 3000
 
 export function Widget() {
   const isSmall = useScrollTimout(DELAY)
+  const [showButtons, setShowButtons] = useState(false)
 
   return (
     <Wrapper>
-      <Button>{isSmall ? <MessageIcon /> : <FullsizeMessage />}</Button>
+      {showButtons && <CommunicatorButtons />}
+      <ToRight>
+        {!showButtons && (
+          <Button onClick={() => setShowButtons(true)}>
+            {isSmall ? <MessageIcon /> : <FullsizeMessage />}
+          </Button>
+        )}
+        {showButtons && (
+          <Button onClick={() => setShowButtons(false)}>
+            <CloseIcon />
+          </Button>
+        )}
+      </ToRight>
     </Wrapper>
   )
 }
@@ -22,14 +38,7 @@ const Wrapper = styled.div`
   right: 24px;
 `
 
-const Button = styled.button`
-  background: white;
-  border-radius: 40px;
-  padding: 16px;
-  transition: all 0.5s ease;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  outline: none;
-  border: none;
-  line-height: 0;
+const ToRight = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `
