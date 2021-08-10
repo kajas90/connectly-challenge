@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Communicators } from '../../enums/communicators'
-import { CommunicatorIcon } from '../icons/CommunicatorIcon'
+import { Communicators } from '../../../../enums/communicators'
+import { CommunicatorIcon } from '../../../icons/CommunicatorIcon'
 
 export function FullsizeMessage() {
   return (

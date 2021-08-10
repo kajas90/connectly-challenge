@@ -2,9 +2,9 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { useScrollTimout } from '../../hooks/useScrollTimeout'
 
-import { FullsizeMessage } from '../FullsizeMessage'
+import { FullsizeMessage } from './components/FullsizeMessage'
 import { MessageIcon, CloseIcon } from '../icons'
-import { CommunicatorButtons } from '../CommunicatorButtons'
+import { CommunicatorButtons } from './components/CommunicatorButtons'
 import { Button } from '../Button'
 
 const DELAY = 3000
