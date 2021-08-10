@@ -12,7 +12,7 @@ import { Communicator } from '../../types/interfaces'
 const DELAY = 3000
 
 // here I would consider opening some messaging apps :)
-const calculateUrl = (
+export const calculateUrl = (
   type: Communicators,
   value: string,
   isMobile: boolean
