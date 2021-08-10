@@ -1,18 +1,19 @@
 import styled from 'styled-components'
 import { Communicators } from '../../enums/communicators'
 import { CommunicatorIcon } from '../icons/CommunicatorIcon'
+
 export function FullsizeMessage() {
   return (
-    <StyledNav>
+    <Wrapper>
       {Object.values(Communicators).map((type) => (
-        <MarginIcon type={type} />
+        <MarginIcon key={type} type={type} />
       ))}
       Message us
-    </StyledNav>
+    </Wrapper>
   )
 }
 
-const StyledNav = styled.nav`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `

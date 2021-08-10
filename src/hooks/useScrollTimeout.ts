@@ -11,9 +11,13 @@ export function useScrollTimout(delay: number) {
   }, [])
 
   useLayoutEffect(() => {
-    window.addEventListener('scroll', listener)
+    // we want to avoid scroll to position after page reload
+    const timeout = setTimeout(() => {
+      window.addEventListener('scroll', listener)
+    }, 10)
     return () => {
       window.removeEventListener('scroll', listener)
+      window.clearTimeout(timeout)
     }
   }, [])
 

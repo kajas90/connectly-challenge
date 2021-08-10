@@ -16,7 +16,7 @@ export function FBIcon({
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <g fill-rule="evenodd" clip-path="url(#clip0)" clip-rule="evenodd">
+      <g fillRule="evenodd" clipPath="url(#clip0)" clipRule="evenodd">
         <path
           fill="url(#fbm_paint0_radial)"
           d="M12 0C5.24 0 0 4.952 0 11.64c0 3.498 1.434 6.521 3.769 8.61a.958.958 0 01.322.684l.065 2.134a.96.96 0 001.348.85l2.381-1.052a.958.958 0 01.641-.047c1.095.3 2.26.461 3.474.461 6.76 0 12-4.952 12-11.64C24 4.952 18.76 0 12 0z"
@@ -35,10 +35,10 @@ export function FBIcon({
           gradientTransform="translate(4.62 23.872) scale(26.1503)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#09F"></stop>
-          <stop offset=".61" stop-color="#A033FF"></stop>
-          <stop offset=".935" stop-color="#FF5280"></stop>
-          <stop offset="1" stop-color="#FF7061"></stop>
+          <stop stopColor="#09F"></stop>
+          <stop offset=".61" stopColor="#A033FF"></stop>
+          <stop offset=".935" stopColor="#FF5280"></stop>
+          <stop offset="1" stopColor="#FF7061"></stop>
         </radialGradient>
         <clipPath id="clip0">
           <path fill="#fff" d="M0 0h24v24H0z"></path>

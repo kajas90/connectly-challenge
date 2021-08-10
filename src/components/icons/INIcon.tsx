@@ -20,7 +20,7 @@ export function INIcon({
         <linearGradient id="b">
           <stop offset="0" stopColor="#3771c8" />
           <stop stopColor="#3771c8" offset=".128" />
-          <stop offset="1" stop-color="#60f" stopOpacity="0" />
+          <stop offset="1" stopColor="#60f" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="a">
           <stop offset="0" stopColor="#fd5" />
