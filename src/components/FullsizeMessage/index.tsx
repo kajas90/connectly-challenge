@@ -1,0 +1,1 @@
+export { FullsizeMessage } from './FullSizeMessage'

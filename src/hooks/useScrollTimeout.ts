@@ -5,7 +5,9 @@ export function useScrollTimout(delay: number) {
   const [isScrolling, setIsScrolling] = useState(false)
 
   const listener = useCallback(() => {
-    setIsScrolling(true)
+    if (window.scrollY > 0) {
+      setIsScrolling(true)
+    }
   }, [])
 
   useLayoutEffect(() => {
@@ -16,11 +18,12 @@ export function useScrollTimout(delay: number) {
   }, [])
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setIsSmall(true)
-    }, delay)
-
-    return () => window.clearTimeout(timeout)
+    if (isScrolling) {
+      const timeout = window.setTimeout(() => {
+        setIsSmall(true)
+      }, delay)
+      return () => window.clearTimeout(timeout)
+    }
   }, [isScrolling, delay])
 
   return isSmall
