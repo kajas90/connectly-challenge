@@ -1,5 +1,6 @@
 export enum Communicators {
   SMS = 'sms',
   FB = 'messenger',
-  IN = 'instagram'
+  IN = 'instagram',
+  LIVECHAT = 'livechat'
 }

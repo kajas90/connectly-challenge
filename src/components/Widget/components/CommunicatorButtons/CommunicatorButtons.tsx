@@ -1,18 +1,31 @@
+import { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Communicator } from '../../../../types/interfaces'
 import { CommunicatorIcon } from '../../../icons/CommunicatorIcon'
 import { Button } from '../../../Button'
+import { Communicators } from '../../../../enums/communicators'
+
+import { LiveChat } from '../LiveChat'
 
 interface CommunicatorButtonsProps {
   items: Communicator[]
 }
 
 export function CommunicatorButtons({ items }: CommunicatorButtonsProps) {
+  const [isVisible, setIsVisible] = useState<boolean>()
+
+  const handleClick = (type: Communicators, value: string) => {
+    if (type === Communicators.LIVECHAT) {
+      setIsVisible(true)
+    } else {
+      window.open(value, '_blank')
+    }
+  }
   return (
     <Wrapper>
       {items.map(({ type, value }, index) => (
         <AnimatedButton
-          onClick={() => window.open(value, '_blank')}
+          onClick={() => handleClick(type, value)}
           delay={index}
           key={type}
         >
@@ -20,6 +33,8 @@ export function CommunicatorButtons({ items }: CommunicatorButtonsProps) {
           {type}
         </AnimatedButton>
       ))}
+      {items.some((item) => item.type === Communicators.LIVECHAT) &&
+        isVisible && <LiveChat />}
     </Wrapper>
   )
 }

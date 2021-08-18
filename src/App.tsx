@@ -7,7 +7,7 @@ function App() {
         accounts={{
           sms: '+48123123123',
           messenger: 'kasia',
-          instagram: 'kasia'
+          livechat: 'kasia@gmail.com'
         }}
       />
     </div>
